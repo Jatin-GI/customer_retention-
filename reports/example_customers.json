@@ -1,0 +1,317 @@
+{
+  "disclaimer": "The probability is a model estimate from historical retail transactions. It is not a certainty and it is not a causal effect of contacting the customer.",
+  "examples": [
+    {
+      "customer_id": "12921",
+      "snapshot_date": "2011-11-01",
+      "probability": 0.9701728884686145,
+      "actual_repeat_purchase": 1,
+      "contributions": [
+        {
+          "feature": "frequency",
+          "value": 30,
+          "shap": 0.10682106671365463
+        },
+        {
+          "feature": "invoices_90d",
+          "value": 8,
+          "shap": 0.09029778551332542
+        },
+        {
+          "feature": "avg_interpurchase_days",
+          "value": 11.27229406130268,
+          "shap": 0.06549050271825756
+        },
+        {
+          "feature": "monetary",
+          "value": 12724.05,
+          "shap": 0.052979064586647355
+        },
+        {
+          "feature": "spend_90d",
+          "value": 3799.5,
+          "shap": 0.046383217104729056
+        }
+      ],
+      "features": {
+        "recency_days": 8.0,
+        "frequency": 30.0,
+        "monetary": 12724.05,
+        "avg_order_value": 424.135,
+        "avg_quantity": 250.36666666666667,
+        "n_distinct_products": 227.0,
+        "tenure_days": 335.0,
+        "spend_30d": 1328.07,
+        "spend_90d": 3799.5,
+        "invoices_30d": 3.0,
+        "invoices_90d": 8.0,
+        "avg_unit_price": 1.6940553854346956,
+        "return_rate": 0.03145695364238411,
+        "spend_per_tenure_day": 37.86919642857143,
+        "avg_interpurchase_days": 11.27229406130268,
+        "spend_trend_ratio": 0.8105945853689757,
+        "country": "United Kingdom"
+      }
+    },
+    {
+      "customer_id": "12592",
+      "snapshot_date": "2011-11-01",
+      "probability": 0.3607776321443573,
+      "actual_repeat_purchase": 0,
+      "contributions": [
+        {
+          "feature": "avg_interpurchase_days",
+          "value": 121.05555555555556,
+          "shap": -0.03689334974458752
+        },
+        {
+          "feature": "spend_per_tenure_day",
+          "value": 2.2818181818181817,
+          "shap": -0.030397707377376716
+        },
+        {
+          "feature": "frequency",
+          "value": 2,
+          "shap": -0.023023872106427395
+        },
+        {
+          "feature": "monetary",
+          "value": 401.6,
+          "shap": -0.022221481025509242
+        },
+        {
+          "feature": "spend_90d",
+          "value": 187.8,
+          "shap": -0.02172234145401839
+        }
+      ],
+      "features": {
+        "recency_days": 54.0,
+        "frequency": 2.0,
+        "monetary": 401.6,
+        "avg_order_value": 200.8,
+        "avg_quantity": 144.0,
+        "n_distinct_products": 10.0,
+        "tenure_days": 175.0,
+        "spend_30d": 0.0,
+        "spend_90d": 187.8,
+        "invoices_30d": 0.0,
+        "invoices_90d": 1.0,
+        "avg_unit_price": 1.3944444444444446,
+        "return_rate": 0.0,
+        "spend_per_tenure_day": 2.2818181818181817,
+        "avg_interpurchase_days": 121.05555555555556,
+        "spend_trend_ratio": 0.8783910196445276,
+        "country": "Germany"
+      }
+    },
+    {
+      "customer_id": "17548",
+      "snapshot_date": "2011-11-01",
+      "probability": 0.19914197459154975,
+      "actual_repeat_purchase": 0,
+      "contributions": [
+        {
+          "feature": "spend_90d",
+          "value": 0.0,
+          "shap": -0.03875812503284326
+        },
+        {
+          "feature": "monetary",
+          "value": 103.3,
+          "shap": -0.03703962763383139
+        },
+        {
+          "feature": "frequency",
+          "value": 1,
+          "shap": -0.03186877491381615
+        },
+        {
+          "feature": "recency_days",
+          "value": 195,
+          "shap": -0.03161853857373834
+        },
+        {
+          "feature": "spend_per_tenure_day",
+          "value": 0.5270408163265305,
+          "shap": -0.030333730053951114
+        }
+      ],
+      "features": {
+        "recency_days": 195.0,
+        "frequency": 1.0,
+        "monetary": 103.3,
+        "avg_order_value": 103.3,
+        "avg_quantity": 58.0,
+        "n_distinct_products": 5.0,
+        "tenure_days": 195.0,
+        "spend_30d": 0.0,
+        "spend_90d": 0.0,
+        "invoices_30d": 0.0,
+        "invoices_90d": 0.0,
+        "avg_unit_price": 1.7810344827586206,
+        "return_rate": 0.7058823529411765,
+        "spend_per_tenure_day": 0.5270408163265305,
+        "avg_interpurchase_days": null,
+        "spend_trend_ratio": null,
+        "country": "United Kingdom"
+      }
+    },
+    {
+      "customer_id": "15427",
+      "snapshot_date": "2011-11-01",
+      "probability": 0.3510735248515859,
+      "actual_repeat_purchase": 1,
+      "contributions": [
+        {
+          "feature": "frequency",
+          "value": 1,
+          "shap": -0.04159728435299394
+        },
+        {
+          "feature": "monetary",
+          "value": 359.49,
+          "shap": -0.030146022664386388
+        },
+        {
+          "feature": "invoices_90d",
+          "value": 1,
+          "shap": -0.023439685103118696
+        },
+        {
+          "feature": "avg_interpurchase_days",
+          "value": null,
+          "shap": -0.01852206270733858
+        },
+        {
+          "feature": "tenure_days",
+          "value": 9,
+          "shap": -0.009473545196646291
+        }
+      ],
+      "features": {
+        "recency_days": 9.0,
+        "frequency": 1.0,
+        "monetary": 359.49,
+        "avg_order_value": 359.49,
+        "avg_quantity": 288.0,
+        "n_distinct_products": 76.0,
+        "tenure_days": 9.0,
+        "spend_30d": 359.49,
+        "spend_90d": 359.49,
+        "invoices_30d": 1.0,
+        "invoices_90d": 1.0,
+        "avg_unit_price": 1.2482291666666667,
+        "return_rate": 0.0,
+        "spend_per_tenure_day": 35.949,
+        "avg_interpurchase_days": null,
+        "spend_trend_ratio": null,
+        "country": "United Kingdom"
+      }
+    },
+    {
+      "customer_id": "17880",
+      "snapshot_date": "2011-11-01",
+      "probability": 0.1810483713762373,
+      "actual_repeat_purchase": 0,
+      "contributions": [
+        {
+          "feature": "recency_days",
+          "value": 326,
+          "shap": -0.05924341140213002
+        },
+        {
+          "feature": "frequency",
+          "value": 1,
+          "shap": -0.039832806609243356
+        },
+        {
+          "feature": "spend_90d",
+          "value": 0.0,
+          "shap": -0.03718663145964315
+        },
+        {
+          "feature": "spend_per_tenure_day",
+          "value": 1.4034250764525995,
+          "shap": -0.03622464976307523
+        },
+        {
+          "feature": "invoices_90d",
+          "value": 0,
+          "shap": -0.02722374512985631
+        }
+      ],
+      "features": {
+        "recency_days": 326.0,
+        "frequency": 1.0,
+        "monetary": 458.92,
+        "avg_order_value": 458.92,
+        "avg_quantity": 314.0,
+        "n_distinct_products": 26.0,
+        "tenure_days": 326.0,
+        "spend_30d": 0.0,
+        "spend_90d": 0.0,
+        "invoices_30d": 0.0,
+        "invoices_90d": 0.0,
+        "avg_unit_price": 1.4615286624203823,
+        "return_rate": 0.0,
+        "spend_per_tenure_day": 1.4034250764525995,
+        "avg_interpurchase_days": null,
+        "spend_trend_ratio": null,
+        "country": "United Kingdom"
+      }
+    },
+    {
+      "customer_id": "17655",
+      "snapshot_date": "2011-11-01",
+      "probability": 0.576282100018259,
+      "actual_repeat_purchase": 1,
+      "contributions": [
+        {
+          "feature": "frequency",
+          "value": 6,
+          "shap": 0.06364979976202687
+        },
+        {
+          "feature": "avg_interpurchase_days",
+          "value": 65.17916666666667,
+          "shap": -0.05961201648307105
+        },
+        {
+          "feature": "monetary",
+          "value": 2191.2,
+          "shap": 0.03882921058645682
+        },
+        {
+          "feature": "recency_days",
+          "value": 2,
+          "shap": -0.031123300966797763
+        },
+        {
+          "feature": "spend_90d",
+          "value": 588.5,
+          "shap": 0.012886416453131523
+        }
+      ],
+      "features": {
+        "recency_days": 2.0,
+        "frequency": 6.0,
+        "monetary": 2191.2,
+        "avg_order_value": 365.2,
+        "avg_quantity": 159.66666666666666,
+        "n_distinct_products": 62.0,
+        "tenure_days": 328.0,
+        "spend_30d": 287.87,
+        "spend_90d": 588.5,
+        "invoices_30d": 1.0,
+        "invoices_90d": 2.0,
+        "avg_unit_price": 2.2872651356993736,
+        "return_rate": 0.02531645569620253,
+        "spend_per_tenure_day": 6.660182370820668,
+        "avg_interpurchase_days": 65.17916666666667,
+        "spend_trend_ratio": 1.923202614379085,
+        "country": "United Kingdom"
+      }
+    }
+  ]
+}

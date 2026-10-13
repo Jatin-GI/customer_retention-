@@ -1,0 +1,283 @@
+{
+  "project_version": "1.0.0",
+  "trained_at": "2026-10-13T14:02:52.243396+00:00",
+  "selected_model": "random_forest",
+  "selection_metric": "validation_pr_auc",
+  "selection_rule": "Highest validation average precision. Ties break toward higher validation F1 at the validation-chosen threshold, then model name.",
+  "threshold": 0.47,
+  "threshold_rule": "Threshold maximizes F1 on the validation snapshot and is frozen before test scoring.",
+  "horizon_days": 30,
+  "random_seed": 42,
+  "snapshots": {
+    "train": [
+      "2011-03-01",
+      "2011-04-01",
+      "2011-05-01",
+      "2011-06-01",
+      "2011-07-01",
+      "2011-08-01",
+      "2011-09-01"
+    ],
+    "validation": [
+      "2011-10-01"
+    ],
+    "test": [
+      "2011-11-01"
+    ]
+  },
+  "inner_holdout_snapshot": "2011-09-01",
+  "feature_columns": [
+    "recency_days",
+    "frequency",
+    "monetary",
+    "avg_order_value",
+    "avg_quantity",
+    "n_distinct_products",
+    "tenure_days",
+    "spend_30d",
+    "spend_90d",
+    "invoices_30d",
+    "invoices_90d",
+    "avg_unit_price",
+    "return_rate",
+    "spend_per_tenure_day",
+    "avg_interpurchase_days",
+    "spend_trend_ratio",
+    "country"
+  ],
+  "target_definition": "repeat_purchase = 1 when the customer has at least one purchase invoice in the 30 days after the snapshot date. Features use only purchases on or before the snapshot date.",
+  "positive_rate_by_split": {
+    "train": 0.27008565542665075,
+    "validation": 0.27788541378355935,
+    "test": 0.3383571966842502
+  },
+  "leakage_audit": {
+    "rows_checked": 40,
+    "passed": true
+  },
+  "database_dialect": "sqlite",
+  "source_sha256": "43465a06f2ccf7c8b5bd2892bc7defb52f97487934fe93b16ae4c3936424676d",
+  "model_path": "C:\\Users\\jatin\\OneDrive\\Desktop\\LLM\\customer-retention-intelligence\\models\\repeat_purchase_pipeline.joblib",
+  "plot_paths": {
+    "confusion_matrix": "C:\\Users\\jatin\\OneDrive\\Desktop\\LLM\\customer-retention-intelligence\\reports\\figures\\test_confusion_matrix.png",
+    "precision_recall": "C:\\Users\\jatin\\OneDrive\\Desktop\\LLM\\customer-retention-intelligence\\reports\\figures\\test_precision_recall.png",
+    "roc": "C:\\Users\\jatin\\OneDrive\\Desktop\\LLM\\customer-retention-intelligence\\reports\\figures\\test_roc.png",
+    "calibration": "C:\\Users\\jatin\\OneDrive\\Desktop\\LLM\\customer-retention-intelligence\\reports\\figures\\test_calibration.png"
+  },
+  "explanation_methods": [
+    "permutation_importance",
+    "shap"
+  ],
+  "shap_note": null,
+  "explanation_limitation": "Feature attributions describe the fitted model. They do not show that changing a feature would cause a customer to buy again.",
+  "plain_language": [
+    "avg_interpurchase_days (average days between purchase invoices). Permuting it changed validation average precision by 0.0488 on average (standard deviation 0.0227 across repeats). In this SHAP sample, higher values are associated with a lower predicted probability. This is a predictive association in the fitted model, not evidence that the feature causes a repeat purchase.",
+    "frequency (count of historical purchase invoices). Permuting it changed validation average precision by 0.0352 on average (standard deviation 0.0145 across repeats). In this SHAP sample, higher values are associated with a higher predicted probability. This is a predictive association in the fitted model, not evidence that the feature causes a repeat purchase.",
+    "monetary (historical purchase revenue before the cutoff). Permuting it changed validation average precision by 0.0236 on average (standard deviation 0.0074 across repeats). In this SHAP sample, higher values are associated with a higher predicted probability. This is a predictive association in the fitted model, not evidence that the feature causes a repeat purchase.",
+    "recency_days (days since the customer's last purchase, measured at the cutoff). Permuting it changed validation average precision by 0.0222 on average (standard deviation 0.0076 across repeats). In this SHAP sample, higher values are associated with a lower predicted probability. This is a predictive association in the fitted model, not evidence that the feature causes a repeat purchase.",
+    "spend_90d (purchase revenue in the 90 days ending on the cutoff). Permuting it changed validation average precision by 0.0203 on average (standard deviation 0.0117 across repeats). In this SHAP sample, higher values are associated with a higher predicted probability. This is a predictive association in the fitted model, not evidence that the feature causes a repeat purchase."
+  ],
+  "accuracy_note": "On the test snapshot, 33.8% of eligible customers purchased again within the horizon. A rule that predicts no purchase for every customer would be right about 66.2% of the time and would have recall 0. The dummy prior model scores every customer at the training base rate. Its F1-maximizing validation threshold is 0.05, which labels every test customer as a purchaser, so its test accuracy equals the positive rate (0.338) and its recall is 1. The selected model's test accuracy was 0.698. That is a modest gap versus the 66.2% majority-class rule, which is why accuracy is a weak way to choose a model when the classes are uneven. Model choice uses validation PR-AUC.",
+  "fitted_details": {
+    "dummy_prior": {
+      "params": {},
+      "inner_pr_auc": null,
+      "threshold": 0.05,
+      "validation_metrics": {
+        "threshold": 0.05,
+        "n": 3613,
+        "positive_rate": 0.27788541378355935,
+        "accuracy": 0.27788541378355935,
+        "precision": 0.27788541378355935,
+        "recall": 1.0,
+        "f1": 0.43491444661035306,
+        "brier": 0.20072594682032555,
+        "tn": 0,
+        "fp": 2609,
+        "fn": 0,
+        "tp": 1004,
+        "roc_auc": 0.5,
+        "pr_auc": 0.27788541378355935
+      },
+      "test_metrics": {
+        "threshold": 0.05,
+        "n": 3981,
+        "positive_rate": 0.3383571966842502,
+        "accuracy": 0.3383571966842502,
+        "precision": 0.3383571966842502,
+        "recall": 1.0,
+        "f1": 0.5056306306306306,
+        "brier": 0.2285326074819139,
+        "tn": 0,
+        "fp": 2634,
+        "fn": 0,
+        "tp": 1347,
+        "roc_auc": 0.5,
+        "pr_auc": 0.3383571966842502
+      }
+    },
+    "logistic_regression": {
+      "params": {
+        "C": 0.1
+      },
+      "inner_pr_auc": 0.560705027021551,
+      "threshold": 0.44,
+      "validation_metrics": {
+        "threshold": 0.44,
+        "n": 3613,
+        "positive_rate": 0.27788541378355935,
+        "accuracy": 0.6601162468862442,
+        "precision": 0.42955974842767297,
+        "recall": 0.6802788844621513,
+        "f1": 0.5265998457979953,
+        "brier": 0.20462239031684873,
+        "tn": 1702,
+        "fp": 907,
+        "fn": 321,
+        "tp": 683,
+        "roc_auc": 0.7231010797744248,
+        "pr_auc": 0.5534399725105609
+      },
+      "test_metrics": {
+        "threshold": 0.44,
+        "n": 3981,
+        "positive_rate": 0.3383571966842502,
+        "accuracy": 0.6857573474001507,
+        "precision": 0.5273037542662116,
+        "recall": 0.688195991091314,
+        "f1": 0.5971014492753624,
+        "brier": 0.19665007507459195,
+        "tn": 1803,
+        "fp": 831,
+        "fn": 420,
+        "tp": 927,
+        "roc_auc": 0.7452752228157964,
+        "pr_auc": 0.6441137248057804
+      }
+    },
+    "random_forest": {
+      "params": {
+        "max_depth": 8,
+        "min_samples_leaf": 5
+      },
+      "inner_pr_auc": 0.5842726238052407,
+      "threshold": 0.47,
+      "validation_metrics": {
+        "threshold": 0.47,
+        "n": 3613,
+        "positive_rate": 0.27788541378355935,
+        "accuracy": 0.6913921948519236,
+        "precision": 0.4585511575802838,
+        "recall": 0.6115537848605578,
+        "f1": 0.5241143832693128,
+        "brier": 0.1945710454519338,
+        "tn": 1884,
+        "fp": 725,
+        "fn": 390,
+        "tp": 614,
+        "roc_auc": 0.7292985971025824,
+        "pr_auc": 0.5624550142765931
+      },
+      "test_metrics": {
+        "threshold": 0.47,
+        "n": 3981,
+        "positive_rate": 0.3383571966842502,
+        "accuracy": 0.6975634262748053,
+        "precision": 0.5459807073954984,
+        "recall": 0.6302895322939867,
+        "f1": 0.5851137146795313,
+        "brier": 0.19353093332233065,
+        "tn": 1928,
+        "fp": 706,
+        "fn": 498,
+        "tp": 849,
+        "roc_auc": 0.7416516300178297,
+        "pr_auc": 0.6413668631967189
+      }
+    },
+    "xgboost": {
+      "params": {
+        "max_depth": 3,
+        "learning_rate": 0.05
+      },
+      "inner_pr_auc": 0.5840480292239952,
+      "threshold": 0.46,
+      "validation_metrics": {
+        "threshold": 0.46,
+        "n": 3613,
+        "positive_rate": 0.27788541378355935,
+        "accuracy": 0.671740935510656,
+        "precision": 0.4394141145139814,
+        "recall": 0.6573705179282868,
+        "f1": 0.5267358339984038,
+        "brier": 0.20153840684966262,
+        "tn": 1767,
+        "fp": 842,
+        "fn": 344,
+        "tp": 660,
+        "roc_auc": 0.7294033906535604,
+        "pr_auc": 0.5615459944646891
+      },
+      "test_metrics": {
+        "threshold": 0.46,
+        "n": 3981,
+        "positive_rate": 0.3383571966842502,
+        "accuracy": 0.6860085405676966,
+        "precision": 0.5280508964719491,
+        "recall": 0.6778025241276912,
+        "f1": 0.5936280884265279,
+        "brier": 0.19745452776300768,
+        "tn": 1818,
+        "fp": 816,
+        "fn": 434,
+        "tp": 913,
+        "roc_auc": 0.7424179776876988,
+        "pr_auc": 0.6397769584964368
+      }
+    }
+  },
+  "test_metrics": {
+    "model": "random_forest",
+    "split": "test",
+    "params": {
+      "max_depth": 8,
+      "min_samples_leaf": 5
+    },
+    "threshold": 0.47,
+    "n": 3981,
+    "positive_rate": 0.3383571966842502,
+    "accuracy": 0.6975634262748053,
+    "precision": 0.5459807073954984,
+    "recall": 0.6302895322939867,
+    "f1": 0.5851137146795313,
+    "brier": 0.19353093332233065,
+    "tn": 1928,
+    "fp": 706,
+    "fn": 498,
+    "tp": 849,
+    "roc_auc": 0.7416516300178297,
+    "pr_auc": 0.6413668631967189
+  },
+  "validation_metrics": {
+    "model": "random_forest",
+    "split": "validation",
+    "params": {
+      "max_depth": 8,
+      "min_samples_leaf": 5
+    },
+    "threshold": 0.47,
+    "n": 3613,
+    "positive_rate": 0.27788541378355935,
+    "accuracy": 0.6913921948519236,
+    "precision": 0.4585511575802838,
+    "recall": 0.6115537848605578,
+    "f1": 0.5241143832693128,
+    "brier": 0.1945710454519338,
+    "tn": 1884,
+    "fp": 725,
+    "fn": 390,
+    "tp": 614,
+    "roc_auc": 0.7292985971025824,
+    "pr_auc": 0.5624550142765931
+  }
+}

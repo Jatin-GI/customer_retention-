@@ -1,0 +1,27 @@
+.env
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ipynb_checkpoints/
+.streamlit/secrets.toml
+
+# Raw and generated data. Do not commit the UCI extract, the local database, or model binaries.
+data/raw/*
+data/processed/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+*.sqlite
+*.sqlite3
+*.db
+
+models/*
+!models/.gitkeep
+
+reports/figures/*
+reports/sql/*.csv
+reports/pipeline.log
+
+.DS_Store
+Thumbs.db

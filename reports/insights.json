@@ -1,0 +1,24 @@
+{
+  "measured": [
+    "The purchase definition covers 4,334 customers, 18,402 purchase invoices, and \u00a38,737,227.64 of merchandise revenue.",
+    "The repeat-purchase rate is 65.3%: that is the share of purchasing customers with at least two purchase invoices anywhere in the observed history.",
+    "Among customers with at least two purchase invoices, the median average gap between invoices is 54.0 days.",
+    "The highest observed purchase-revenue month is 2011-11 at \u00a31,136,534.00. The lowest is 2011-02 at \u00a3442,293.59. The latest invoice date is 2011-12-09 12:50:00, so 2011-12 is an incomplete month.",
+    "Under the Python RFM rules, the Recent and frequent segment contributes 66.0% of profiled purchase revenue and 25.8% of profiled customers. These segments are rules, not ground-truth labels.",
+    "The selected model is random_forest. On the held-out test snapshot its PR-AUC is 0.641, ROC-AUC is 0.742, and F1 at the validation threshold 0.47 is 0.585. Test precision is 0.546 and recall is 0.630.",
+    "On the test snapshot, 33.8% of eligible customers purchased again within the horizon. A rule that predicts no purchase for every customer would be right about 66.2% of the time and would have recall 0. The dummy prior model scores every customer at the training base rate. Its F1-maximizing validation threshold is 0.05, which labels every test customer as a purchaser, so its test accuracy equals the positive rate (0.338) and its recall is 1. The selected model's test accuracy was 0.698. That is a modest gap versus the 66.2% majority-class rule, which is why accuracy is a weak way to choose a model when the classes are uneven. Model choice uses validation PR-AUC."
+  ],
+  "hypotheses": [
+    "Hypothesis, not a measured outcome: a retention offer aimed at the Inactive segment (1,081 customers, 5.9% of profiled revenue) could be tested with a randomized holdout. The success metric would be the 30-day purchase rate versus the holdout, not the model's historical accuracy.",
+    "Hypothesis, not a measured outcome: ranking customers by the model's predicted probability and contacting those below the validation threshold may concentrate outreach. That hypothesis is only supported if a later experiment shows incremental purchases. The score is an association with past repurchase, not a causal effect of intervening.",
+    "Hypothesis, not a measured outcome: because one-time and repeat customers can differ in recency and order cadence, a test of reminder timing around the median inter-purchase gap is more informative than a blanket discount. The historical gap is a description of this dataset, not a recommended wait time for another business."
+  ],
+  "limitations": [
+    "The source is the UCI Online Retail dataset, a UK gift retailer with many wholesale buyers, from December 2010 through December 2011. It is not AstroTalk customer data and it is not a current consumer-app event stream.",
+    "Anonymous invoices are excluded from customer metrics because they have no ID to follow. That removes revenue from the repeat-purchase calculations.",
+    "Cancellations and non-merchandise lines are excluded from the purchase definition. A different treatment of returns would change revenue and labels.",
+    "The final calendar day is partial. Months and horizons that include it are not a complete day of trade.",
+    "RFM segment names are configurable rules. They are not the supervised label and they are not causal clusters.",
+    "Model explanations are predictive associations. They do not say that changing recency or spend would cause a purchase."
+  ]
+}

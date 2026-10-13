@@ -1,0 +1,157 @@
+[
+  {
+    "query": "02_overview_kpis.sql",
+    "rows": 1,
+    "columns": [
+      "line_items",
+      "purchase_lines",
+      "purchase_invoices",
+      "purchase_customers",
+      "purchase_revenue",
+      "net_line_revenue",
+      "rows_missing_customer",
+      "cancellation_rows",
+      "return_rows",
+      "repeat_customers",
+      "repeat_purchase_rate",
+      "average_order_value"
+    ]
+  },
+  {
+    "query": "03_monthly_trends.sql",
+    "rows": 13,
+    "columns": [
+      "year_month",
+      "purchase_invoices",
+      "active_customers",
+      "purchase_revenue",
+      "average_order_value",
+      "running_revenue",
+      "prior_month_revenue",
+      "revenue_change_ratio"
+    ]
+  },
+  {
+    "query": "04_repeat_purchase_rate.sql",
+    "rows": 5,
+    "columns": [
+      "invoice_band",
+      "customers",
+      "purchase_revenue",
+      "avg_invoices_in_band"
+    ]
+  },
+  {
+    "query": "05_customer_frequency.sql",
+    "rows": 4334,
+    "columns": [
+      "customer_id",
+      "n_invoices",
+      "purchase_lines",
+      "purchase_revenue",
+      "average_order_value",
+      "first_purchase",
+      "last_purchase"
+    ]
+  },
+  {
+    "query": "06_average_order_value.sql",
+    "rows": 19,
+    "columns": [
+      "country",
+      "purchase_invoices",
+      "customers",
+      "average_order_value",
+      "purchase_revenue",
+      "average_quantity"
+    ]
+  },
+  {
+    "query": "07_rfm.sql",
+    "rows": 4334,
+    "columns": [
+      "customer_id",
+      "recency_days",
+      "frequency",
+      "monetary",
+      "as_of_date",
+      "r_score",
+      "f_score",
+      "m_score"
+    ]
+  },
+  {
+    "query": "08_top_products.sql",
+    "rows": 25,
+    "columns": [
+      "revenue_rank",
+      "stock_code",
+      "description",
+      "quantity_sold",
+      "purchase_revenue",
+      "invoices",
+      "customers"
+    ]
+  },
+  {
+    "query": "09_monthly_cohorts.sql",
+    "rows": 91,
+    "columns": [
+      "cohort_month",
+      "month_offset",
+      "cohort_customers",
+      "active_customers",
+      "retention_rate"
+    ]
+  },
+  {
+    "query": "10_revenue_by_segment.sql",
+    "rows": 6,
+    "columns": [
+      "segment",
+      "customers",
+      "purchase_revenue",
+      "avg_recency_days",
+      "avg_frequency",
+      "avg_monetary",
+      "revenue_share",
+      "customer_share"
+    ]
+  },
+  {
+    "query": "11_declining_activity.sql",
+    "rows": 426,
+    "columns": [
+      "customer_id",
+      "as_of_date",
+      "recent_invoices",
+      "prior_invoices",
+      "recent_revenue",
+      "prior_revenue"
+    ]
+  },
+  {
+    "query": "12_customer_features.sql",
+    "rows": 3981,
+    "columns": [
+      "customer_id",
+      "snapshot_date",
+      "recency_days",
+      "frequency",
+      "monetary",
+      "avg_order_value",
+      "avg_quantity",
+      "n_distinct_products",
+      "avg_interpurchase_days",
+      "tenure_days",
+      "spend_30d",
+      "spend_90d",
+      "invoices_30d",
+      "invoices_90d",
+      "spend_trend_ratio",
+      "avg_unit_price",
+      "return_rate",
+      "spend_per_tenure_day"
+    ]
+  }
+]

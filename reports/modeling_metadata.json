@@ -1,0 +1,55 @@
+{
+  "min_purchase_date": "2010-12-01 08:26:00",
+  "max_purchase_date": "2011-12-09 12:50:00",
+  "horizon_days": 30,
+  "min_history_invoices": 1,
+  "warmup_days": 90,
+  "snapshots": {
+    "train": [
+      "2011-03-01",
+      "2011-04-01",
+      "2011-05-01",
+      "2011-06-01",
+      "2011-07-01",
+      "2011-08-01",
+      "2011-09-01"
+    ],
+    "validation": [
+      "2011-10-01"
+    ],
+    "test": [
+      "2011-11-01"
+    ]
+  },
+  "rows": 26040,
+  "positive_rate_by_split": {
+    "train": 0.27008565542665075,
+    "validation": 0.27788541378355935,
+    "test": 0.3383571966842502
+  },
+  "target_definition": "repeat_purchase = 1 when the customer has at least one purchase invoice in the 30 days after the snapshot date. Features use only purchases on or before the snapshot date.",
+  "feature_columns": [
+    "recency_days",
+    "frequency",
+    "monetary",
+    "avg_order_value",
+    "avg_quantity",
+    "n_distinct_products",
+    "tenure_days",
+    "spend_30d",
+    "spend_90d",
+    "invoices_30d",
+    "invoices_90d",
+    "avg_unit_price",
+    "return_rate",
+    "spend_per_tenure_day",
+    "avg_interpurchase_days",
+    "spend_trend_ratio",
+    "country"
+  ],
+  "leakage_audit": {
+    "rows_checked": 40,
+    "passed": true
+  },
+  "source_sha256": "43465a06f2ccf7c8b5bd2892bc7defb52f97487934fe93b16ae4c3936424676d"
+}

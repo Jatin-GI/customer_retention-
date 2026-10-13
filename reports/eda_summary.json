@@ -1,0 +1,108 @@
+{
+  "source_rows": 541909,
+  "rows_retained": 541909,
+  "missing_customer_rows": 135080,
+  "exact_duplicate_rows": 5268,
+  "cancellation_rows": 9288,
+  "purchase_rows": 391150,
+  "purchase_revenue": 8737227.64,
+  "purchase_customers": 4334,
+  "min_invoice_date": "2010-12-01 08:26:00",
+  "max_invoice_date": "2011-12-09 12:50:00",
+  "peak_month": "2011-11",
+  "peak_revenue": 1136534.0,
+  "low_month": "2011-02",
+  "low_revenue": 442293.59,
+  "last_month": "2011-12",
+  "last_month_is_partial": true,
+  "median_order_value": 301.65,
+  "p95_order_value": 1212.1630000000014,
+  "one_time_customers": 1505,
+  "repeat_customers": 2829,
+  "repeat_purchase_rate": 0.6527457314259345,
+  "one_time_revenue_share": 0.07171678772924818,
+  "repeat_revenue_share": 0.9282832122707517,
+  "median_gap_days": 54.04548611111111,
+  "gap_customers": 2829,
+  "largest_segment": "Recent and frequent",
+  "largest_segment_customers": 1119,
+  "largest_segment_customer_share": 0.2581910475311491,
+  "highest_revenue_segment": "Recent and frequent",
+  "highest_revenue_share": 0.6602775351289805,
+  "mean_month1_retention": 0.20429166666666668,
+  "cohorts_with_month1": 12,
+  "test_positive_rate": 0.3383571966842502,
+  "train_positive_rate": 0.27008565542665075,
+  "test_positive_median_recency": 33.0,
+  "test_negative_median_recency": 76.0,
+  "plots": [
+    "C:\\Users\\jatin\\OneDrive\\Desktop\\LLM\\customer-retention-intelligence\\reports\\figures\\01_data_quality.png",
+    "C:\\Users\\jatin\\OneDrive\\Desktop\\LLM\\customer-retention-intelligence\\reports\\figures\\02_monthly_revenue.png",
+    "C:\\Users\\jatin\\OneDrive\\Desktop\\LLM\\customer-retention-intelligence\\reports\\figures\\03_order_value.png",
+    "C:\\Users\\jatin\\OneDrive\\Desktop\\LLM\\customer-retention-intelligence\\reports\\figures\\04_frequency.png",
+    "C:\\Users\\jatin\\OneDrive\\Desktop\\LLM\\customer-retention-intelligence\\reports\\figures\\05_interpurchase_gap.png",
+    "C:\\Users\\jatin\\OneDrive\\Desktop\\LLM\\customer-retention-intelligence\\reports\\figures\\06_repeat_revenue_share.png",
+    "C:\\Users\\jatin\\OneDrive\\Desktop\\LLM\\customer-retention-intelligence\\reports\\figures\\07_segment_revenue.png",
+    "C:\\Users\\jatin\\OneDrive\\Desktop\\LLM\\customer-retention-intelligence\\reports\\figures\\08_cohort_retention.png",
+    "C:\\Users\\jatin\\OneDrive\\Desktop\\LLM\\customer-retention-intelligence\\reports\\figures\\09_recency_by_label.png",
+    "C:\\Users\\jatin\\OneDrive\\Desktop\\LLM\\customer-retention-intelligence\\reports\\figures\\10_class_balance.png"
+  ],
+  "interpretations": [
+    {
+      "chart": "Data quality flags",
+      "shows": "How many source rows were retained, and how many were flagged as missing a customer, cancelled, or duplicated.",
+      "pattern": "The file has 541,909 source rows and 541,909 retained rows. 135,080 retained rows (24.9%) have no customer ID. 9,288 rows are cancellations and 5,268 are exact duplicate copies.",
+      "why": "Customer-level revenue and the repeat-purchase label cannot use anonymous or duplicate lines without inventing an identity or double-counting an order.",
+      "further": "A merchant would still need to learn whether guest checkouts can be matched back to accounts before treating the excluded revenue as lost demand."
+    },
+    {
+      "chart": "Monthly purchase revenue",
+      "shows": "Merchandise purchase revenue by calendar month under the documented purchase definition.",
+      "pattern": "The highest month is 2011-11 at \u00a31,136,534.00. The lowest month is 2011-02 at \u00a3442,293.59. The latest invoice is 2011-12-09 12:50:00, so 2011-12 does not contain a full month.",
+      "why": "A single peak can be seasonality, wholesale timing, or a partial month. The series is the denominator for any claim about growth.",
+      "further": "More than one year of invoices would be needed before treating the peak month as a recurring seasonal effect."
+    },
+    {
+      "chart": "Order-value distribution",
+      "shows": "The distribution of purchase-invoice revenue.",
+      "pattern": "The median purchase invoice is \u00a3301.65 and the 95th percentile is \u00a31,212.16. The upper tail is not more than five times the median in this cut of the data.",
+      "why": "Means and totals will follow the tail. A retention metric based on revenue is not the same as one based on customer counts.",
+      "further": "Separating wholesale and consumer accounts, which this file does not label, would show whether the tail is a few business buyers."
+    },
+    {
+      "chart": "One-time and repeat customers",
+      "shows": "Customers with one purchase invoice versus customers with two or more, and the revenue each group contributes.",
+      "pattern": "1,505 customers have one purchase invoice and 2,829 have more than one. The repeat-purchase rate is 65.3%. Repeat customers contribute 92.8% of purchase revenue, while one-time customers contribute 7.2%.",
+      "why": "A high repeat rate means the prediction problem is not the same as finding a rare second purchase, and revenue concentration changes who is costly to lose.",
+      "further": "This rate uses the whole history. It is not the 30-day future label used by the model."
+    },
+    {
+      "chart": "Time between purchases",
+      "shows": "The average gap between consecutive purchase invoices, for customers who have at least two.",
+      "pattern": "2,829 customers have a measurable gap. The median of those customer-level average gaps is 54.0 days.",
+      "why": "The gap is the descriptive context for a 30-day prediction horizon. A horizon much shorter than the typical gap will have a low positive rate.",
+      "further": "Gaps can mix consumers and wholesale buyers. A business decision about reminder timing would need that split, which this dataset does not provide."
+    },
+    {
+      "chart": "RFM segments",
+      "shows": "Rule-based segments from recency, frequency, and monetary quintiles on the full observed purchase history.",
+      "pattern": "The largest segment by customers is Recent and frequent (1,119 customers, 25.8% of the profiled base). The largest segment by revenue is Recent and frequent at 66.0% of profiled revenue.",
+      "why": "Segment shares show where customers and revenue sit. They are not proof that a message sent to that segment would change behavior.",
+      "further": "The SQL NTILE segments can place boundary customers differently from these pandas quintiles. Compare both before using either as an operational list."
+    },
+    {
+      "chart": "Monthly cohorts",
+      "shows": "For each acquisition month, the share of customers who purchase again in a later month offset.",
+      "pattern": "Across 12 cohorts that have a month-1 observation, the mean month-1 retention rate is 20.4%.",
+      "why": "Cohort retention separates customers who were acquired recently from customers who have had more time to return.",
+      "further": "Later offsets have fewer cohorts, and the last calendar month is partial, so the right edge of the heatmap is thinner than the left."
+    },
+    {
+      "chart": "Features and the future label",
+      "shows": "Recency at the test cutoff, split by whether the customer purchases in the following horizon.",
+      "pattern": "The test positive rate is 33.8%. The training positive rate is 27.0%. On the test snapshot, the median recency is 33 days for customers who do purchase in the next horizon and 76 days for customers who do not. Buyers in the horizon are more recent at the cutoff than non-buyers.",
+      "why": "A difference in recency is an association with the label. It can also dominate a model and hide other useful signals. Accuracy will look high if the positive rate is far from one half, even for a constant prediction.",
+      "further": "Check the held-out precision and recall before using a low score as a contact list. Recency is available at the cutoff; using a later purchase to build it would leak the label."
+    }
+  ]
+}

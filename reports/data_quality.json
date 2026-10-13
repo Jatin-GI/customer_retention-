@@ -1,0 +1,101 @@
+{
+  "source_rows": 541909,
+  "source_columns": [
+    "InvoiceNo",
+    "StockCode",
+    "Description",
+    "Quantity",
+    "InvoiceDate",
+    "UnitPrice",
+    "CustomerID",
+    "Country"
+  ],
+  "decisions": [
+    {
+      "rule": "Drop rows with no invoice number, an unparseable invoice date, or a non-numeric quantity.",
+      "rows_affected": 0,
+      "action": "Removed from the analysis table and counted here. A sample is stored in rejected_row_sample.",
+      "reason": "These rows cannot support a transaction key or a timeline."
+    },
+    {
+      "rule": "Missing CustomerID",
+      "rows_affected": 135080,
+      "action": "Retained and excluded from purchase revenue, RFM, and the model population.",
+      "reason": "Repeat purchase is defined at the customer level. Anonymous lines have no identity to follow."
+    },
+    {
+      "rule": "Invoice number starts with C, or quantity is negative",
+      "rows_affected": 10624,
+      "action": "Retained with is_cancellation and is_return flags. Excluded from the purchase definition.",
+      "reason": "The UCI documentation defines a leading C as a cancellation. Negative quantities are returns."
+    },
+    {
+      "rule": "Unit price missing or not strictly positive",
+      "rows_affected": 2517,
+      "action": "Retained and excluded from purchase revenue.",
+      "reason": "Zero and negative prices are adjustments, not sold merchandise."
+    },
+    {
+      "rule": "Exact duplicate of invoice, product, quantity, price, date, customer, and country",
+      "rows_affected": 5268,
+      "action": "Retained with is_exact_duplicate = 1. line_revenue set to 0 on copies after the first.",
+      "reason": "Copies would double-count orders. The first copy is kept for measurement."
+    },
+    {
+      "rule": "Non-merchandise stock code (no digit, blank, or a known fee code such as POST, DOT, M, D, C2)",
+      "rows_affected": 2940,
+      "action": "Retained and excluded from purchase revenue and product counts.",
+      "reason": "Postage, manual adjustments, discounts, and bank charges are not products and would inflate monetary value."
+    },
+    {
+      "rule": "Missing product description",
+      "rows_affected": 1454,
+      "action": "Retained. Description is not required for the purchase definition.",
+      "reason": "The stock code still identifies the item."
+    }
+  ],
+  "rows_removed_unusable": 0,
+  "removed_missing_invoice_no": 0,
+  "removed_unparseable_invoice_date": 0,
+  "removed_non_numeric_quantity": 0,
+  "rejected_row_sample": [],
+  "rows_retained": 541909,
+  "missing_customer_rows": 135080,
+  "cancellation_rows": 9288,
+  "return_rows": 10624,
+  "invalid_price_rows": 2517,
+  "exact_duplicate_rows": 5268,
+  "non_merchandise_rows": 2940,
+  "missing_description_rows": 1454,
+  "zero_quantity_rows": 0,
+  "purchase_rows": 391150,
+  "purchase_customers": 4334,
+  "purchase_invoices": 18402,
+  "purchase_revenue": 8737227.64,
+  "non_merchandise_revenue_excluded": -45702.036000000015,
+  "duplicate_revenue_suppressed": 21740.98,
+  "unattributed_positive_revenue": 1510382.51,
+  "non_merchandise_stock_codes": {
+    "POST": 1256,
+    "DOT": 710,
+    "M": 571,
+    "C2": 144,
+    "D": 77,
+    "S": 63,
+    "BANK CHARGES": 37,
+    "AMAZONFEE": 34,
+    "CRUK": 16,
+    "DCGSSGIRL": 13,
+    "DCGSSBOY": 11,
+    "PADS": 4,
+    "B": 3,
+    "m": 1
+  },
+  "min_invoice_date": "2010-12-01 08:26:00",
+  "max_invoice_date": "2011-12-09 12:50:00",
+  "purchase_definition": "A purchase line has a customer ID, a parsed date, a positive quantity, a positive unit price, an invoice number that does not start with C, a merchandise stock code, and is the first copy of an exact duplicate group.",
+  "source_sha256": "43465a06f2ccf7c8b5bd2892bc7defb52f97487934fe93b16ae4c3936424676d",
+  "source_path": "C:\\Users\\jatin\\OneDrive\\Desktop\\LLM\\customer-retention-intelligence\\data\\raw\\Online Retail.xlsx",
+  "license": "CC BY 4.0",
+  "citation": "Chen, D. (2015). Online Retail. UCI Machine Learning Repository. https://doi.org/10.24432/C5BW33"
+}
